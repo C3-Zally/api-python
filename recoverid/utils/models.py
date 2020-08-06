@@ -26,3 +26,9 @@ class RecoveridModel(models.Model):
         help_text='Date time on wich object was deleted.'
 
     )
+
+    latitude = models.FloatField
+    longitude = models.FloatField
+    status = models.CharField(max_length=8,choices=[(tag, tag.value) for tag in StatusType])
+    population = models.BigIntegerField
+    flag  =  models.CharField(max_length=500)

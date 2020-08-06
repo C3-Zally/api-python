@@ -13,8 +13,5 @@ class Country(RecoveridModel):
     capital =  models.CharField(max_length=50)
     region =  models.CharField(max_length=50)
     subregion  =  models.CharField(max_length=50)
-    latitude = models.FloatField
-    longitude = models.FloatField
-    flag  =  models.CharField(max_length=500)
-    population = models.BigIntegerField
-    status = models.CharField(max_length=8,choices=[(tag, tag.value) for tag in StatusType])
+
+    
