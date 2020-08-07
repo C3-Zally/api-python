@@ -2,7 +2,13 @@
 
 #Django
 from django.db import models
+from recoverid.utils.enums import StatusType
 
+
+TYPE_STATUS = [
+        ("ACTIVE","ACTIVE"),
+        ("INACTIVE","INACTIVE")
+        ]
 
 class RecoveridModel(models.Model):
     """Recoverid Model"""
@@ -29,6 +35,7 @@ class RecoveridModel(models.Model):
 
     latitude = models.FloatField
     longitude = models.FloatField
-    status = models.CharField(max_length=8,choices=[(tag, tag.value) for tag in StatusType])
+    #status = models.CharField(max_length=8,choices=[(tag, tag.value) for tag in StatusType])
+    status = models.CharField(max_length=8,choices=TYPE_STATUS)
     population = models.BigIntegerField
     flag  =  models.CharField(max_length=500)

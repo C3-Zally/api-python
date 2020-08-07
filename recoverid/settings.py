@@ -37,11 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'recoverid.cares.app.CaresAppConfig',
-    'recoverid.cities.app.CitiesAppConfig',
-    'recoverid.countries.app.CountriesAppConfig',
-    'recoverid.reports.app.ReportsAppConfig',
-    'recoverid.states.app.StatesAppConfig',
+    'recoverid.cares.apps.CaresAppConfig',
+    'recoverid.cities.apps.CitiesAppConfig',
+    'recoverid.countries.apps.CountriesAppConfig',
+    'recoverid.reports.apps.ReportsAppConfig',
+    'recoverid.states.apps.StatesAppConfig',
+    'recoverid.utils',
 
 ]
 
@@ -89,6 +90,7 @@ DATABASES = {
         'PORT': ''
     }
 }
+
 
 
 # Password validation
