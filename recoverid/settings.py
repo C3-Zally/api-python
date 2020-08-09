@@ -31,12 +31,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Local apps
+    'recoverid.cares.apps.CaresAppConfig',
+    'recoverid.cities.apps.CitiesAppConfig',
+    'recoverid.countries.apps.CountriesAppConfig',
+    'recoverid.reports.apps.ReportsAppConfig',
+    'recoverid.states.apps.StatesAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -75,12 +83,8 @@ WSGI_APPLICATION = 'recoverid.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Recoverid',
-        'USER':'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': ''
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
