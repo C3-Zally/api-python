@@ -1,7 +1,8 @@
 #Django
 from django.db import models
 
-class Care():
+class Care(models.Model):
+
     """Care Model"""
     care_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50)

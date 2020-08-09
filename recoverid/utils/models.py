@@ -2,7 +2,6 @@
 
 #Django
 from django.db import models
-from recoverid.utils.enums import StatusType
 
 
 TYPE_STATUS = [
@@ -29,6 +28,7 @@ class RecoveridModel(models.Model):
 
     deleted_at= models.DateTimeField(
         'deleted at',
+        auto_now_add = True,
         help_text='Date time on wich object was deleted.'
 
     )
@@ -37,5 +37,9 @@ class RecoveridModel(models.Model):
     longitude = models.FloatField
     #status = models.CharField(max_length=8,choices=[(tag, tag.value) for tag in StatusType])
     status = models.CharField(max_length=8,choices=TYPE_STATUS)
-    population = models.BigIntegerField
+    population = models.IntegerField
     flag  =  models.CharField(max_length=500)
+
+    class Meta:
+        """Meta option."""
+        abstract = True
