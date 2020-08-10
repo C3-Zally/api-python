@@ -11,3 +11,6 @@ class Care(RecoveridModel):
     slug = models.CharField(max_length=50)
     description = models.CharField(max_length=4000)
     
+    def __str__(self):
+        """ return id """
+        return self.title

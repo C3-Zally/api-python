@@ -24,9 +24,7 @@ class RecoveridModel(models.Model):
         help_text='Date time on which object was last updated.'
 
     )
-
-    deleted_at= models.DateTimeField(
-        'deleted at',
-        help_text='Date time on which object was deleted.'
-
-    )
+    
+    class Meta:
+        """Meta option."""
+        abstract = True
