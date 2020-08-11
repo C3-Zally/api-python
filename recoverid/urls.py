@@ -17,8 +17,20 @@ from django.conf import settings
 from django.urls import include,path
 from django.conf.urls.static import static
 from django.contrib import admin
+<<<<<<< HEAD
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include(('recoverid.cares.urls', 'cares'), namespace='care')),
+    path('', include(('recoverid.countries.urls', 'countries'), namespace='country')),
+    # path('', include(('recoverid.cities.urls', 'cities'), namespace='city')),
+    # path('', include(('recoverid.states.urls', 'states'), namespace='state')),
+    path('', include(('recoverid.reports.urls', 'reports'), namespace='report')),
+=======
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(('recoverid.reports.urls','reports'),namespace='report'))
+>>>>>>> features
 ]

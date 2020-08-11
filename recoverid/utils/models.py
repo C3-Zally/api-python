@@ -10,21 +10,28 @@ TYPE_STATUS = [
         ]
 
 class RecoveridModel(models.Model):
-    """Recoverid Model"""
+    """Recoverid Base Model
+    
+    RecoveridModel is the abstact base class for every
+    models that can be created in this project.
+    """
 
     created_at = models.DateTimeField(
         'created at',
         auto_now_add=True,
-        help_text='Date time on wich object was created.'
+        help_text='Date time on which object was created.'
 
     )
 
     updated_at= models.DateTimeField(
         'updated at',
         auto_now = True,
-        help_text='Date time on wich object was last updated.'
+        help_text='Date time on which object was last updated.'
 
     )
+<<<<<<< HEAD
+    
+=======
 
     deleted_at= models.DateTimeField(
         'deleted at',
@@ -40,6 +47,7 @@ class RecoveridModel(models.Model):
     population = models.IntegerField
     flag  =  models.CharField(max_length=500)
 
+>>>>>>> features
     class Meta:
         """Meta option."""
         abstract = True
