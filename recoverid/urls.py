@@ -26,5 +26,4 @@ urlpatterns = [
     # path('', include(('recoverid.cities.urls', 'cities'), namespace='city')),
     # path('', include(('recoverid.states.urls', 'states'), namespace='state')),
     path('', include(('recoverid.reports.urls', 'reports'), namespace='report')),
-    path('',include(('recoverid.reports.urls','reports'),namespace='report'))
 ]

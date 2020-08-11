@@ -11,6 +11,7 @@ from django.http import HttpResponse
 import requests
 import json
 import datetime
+
 # Django
 from django.db.models import Sum
 
