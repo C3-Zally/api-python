@@ -8,7 +8,7 @@ class City(RecoveridModel):
     """City Model"""
     city_id = models.AutoField(primary_key=True)
     city_name = models.CharField(max_length=50, blank = True)
-    country_id = models.ForeignKey(State,on_delete=models.CASCADE) 
+    state_id = models.ForeignKey(State,on_delete=models.CASCADE) 
     flag  =  models.CharField(max_length=500)
     population = models.BigIntegerField()
 

@@ -38,23 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'django_extensions',
     'rest_framework',
 
     # Local apps
-=======
->>>>>>> features
     'recoverid.cares.apps.CaresAppConfig',
     'recoverid.cities.apps.CitiesAppConfig',
     'recoverid.countries.apps.CountriesAppConfig',
     'recoverid.reports.apps.ReportsAppConfig',
     'recoverid.states.apps.StatesAppConfig',
-<<<<<<< HEAD
-=======
-
-
->>>>>>> features
 ]
 
 MIDDLEWARE = [
