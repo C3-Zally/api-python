@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+#BASE_DIR = os.path(__file__).resolve(strict=True).parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -31,12 +31,30 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
+    'django_extensions',
+    'rest_framework',
+
+    # Local apps
+=======
+>>>>>>> features
+    'recoverid.cares.apps.CaresAppConfig',
+    'recoverid.cities.apps.CitiesAppConfig',
+    'recoverid.countries.apps.CountriesAppConfig',
+    'recoverid.reports.apps.ReportsAppConfig',
+    'recoverid.states.apps.StatesAppConfig',
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> features
 ]
 
 MIDDLEWARE = [
@@ -75,14 +93,11 @@ WSGI_APPLICATION = 'recoverid.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Recoverid',
-        'USER':'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': ''
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 
 # Password validation
