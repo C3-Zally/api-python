@@ -6,15 +6,24 @@ from recoverid.utils.models import RecoveridModel
 class Country(RecoveridModel):
     """Contry Model"""
     country_id = models.AutoField(primary_key=True)
+<<<<<<< HEAD
     country_name = models.CharField(max_length=50, blank=True)
+=======
+    country_name = models.CharField(max_length=50,null = False,blank = False)
+>>>>>>> features
     alpha2code = models.CharField(max_length=5)
     alpha3code = models.CharField(max_length=5)
     capital =  models.CharField(max_length=50)
     region =  models.CharField(max_length=50)
     subregion  =  models.CharField(max_length=50)
+<<<<<<< HEAD
     flag  =  models.CharField(max_length=500)
     population = models.BigIntegerField()
 
     def __str__(self):
         """ Return country name """
         return self.country_name
+=======
+
+    
+>>>>>>> features

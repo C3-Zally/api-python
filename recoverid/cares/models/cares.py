@@ -1,10 +1,15 @@
 # Django
 from django.db import models
 
+<<<<<<< HEAD
 # Utilites
 from recoverid.utils.models import RecoveridModel
 
 class Care(RecoveridModel):
+=======
+class Care(models.Model):
+
+>>>>>>> features
     """Care Model"""
     care_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50)

@@ -2,12 +2,16 @@
 from django.db import models
 
 from recoverid.utils.models import RecoveridModel
+<<<<<<< HEAD
 # from recoverid.utils.enums import StatusType
 from recoverid.countries.models import Country
+=======
+>>>>>>> features
 
 class State(RecoveridModel):
     """State Model"""
     state_id = models.AutoField(primary_key=True)
+<<<<<<< HEAD
     state_name = models.CharField(max_length=50,blank = True)
     latitude = models.FloatField()
     longitude = models.FloatField()
@@ -19,3 +23,10 @@ class State(RecoveridModel):
     def __str__(self):
         """ return id """
         return self.state_id
+=======
+    state_name = models.CharField(max_length=50,null = False,blank = False)
+    country_id = models.ForeignKey("countries.Country",on_delete=models.CASCADE) 
+    
+    
+    
+>>>>>>> features
