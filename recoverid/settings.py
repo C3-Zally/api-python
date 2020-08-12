@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'rest_framework',
+    'django_filters',
+    
 
     # Local apps
     'recoverid.cares.apps.CaresAppConfig',
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'recoverid.reports.apps.ReportsAppConfig',
     'recoverid.states.apps.StatesAppConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
