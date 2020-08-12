@@ -2,7 +2,7 @@
 
 > Description and use of the API - Recoverid project C3 - Zally
 
-[![django version](https://img.shields.io/badge/django%20versions-1.11%20%7C%202.0%20%7C%202.1-blue)](https://www.djangoproject.com/) [![github release version](https://img.shields.io/github/v/release/c3-zally/api-python.svg?include_prereleases)](https://github.com/c3-zally/api-python/releases/latest)  [![license](https://img.shields.io/github/license/c3-zally/api-python.svg)](https://github.com/c3-zally/api-python/blob/master/LICENSE)  [![PRs welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg)](https://github.com/c3-zally/api-python/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) [![code with hearth by Supermavster](https://img.shields.io/badge/%3C/%3E%20with%20%E2%99%A5%20by-Supermavster-ff1414.svg)](https://github.com/supermavster)
+[![django version](https://img.shields.io/badge/django%20versions-1.11%20%7C%202.0%20%7C%202.1-blue)](https://www.djangoproject.com/) [![github release version](https://img.shields.io/github/v/release/c3-zally/api-python.svg?include_prereleases)](https://github.com/c3-zally/api-python/releases/latest)  [![license](https://img.shields.io/github/license/c3-zally/api-python.svg)](https://github.com/c3-zally/api-python/blob/master/LICENSE)  [![PRs welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg)](https://github.com/c3-zally/api-python/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
 ## Comenzando 🚀
 
