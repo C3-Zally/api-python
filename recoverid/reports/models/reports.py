@@ -23,8 +23,8 @@ class Report(models.Model):
     state_id =models.ForeignKey(State,on_delete=models.CASCADE, null=True) 
     city_id =models.ForeignKey(City,on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=8,choices=TYPE_STATUS)
-    created_at = models.DateTimeField(
-        'created at',
+    reated_at = models.DateTimeField(
+        'reated at',
         auto_now_add=True,
         help_text='Date time on wich object was created.'
 
