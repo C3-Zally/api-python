@@ -112,7 +112,7 @@ def uploadDataDialy():
         dateReport = datajson['header']['date']
         date_time = datetime.datetime.strptime(dateReport,"%Y-%m-%dT%H:%M:%SZ")
         countReportDate = Report.objects.filter(date=date_time).count()
-    except expression as identifier:
+    except:
         return '404'
     
     try:
