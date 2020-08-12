@@ -29,15 +29,11 @@ class RecoveridModel(models.Model):
         help_text='Date time on which object was last updated.'
 
     )
-<<<<<<< HEAD
-    
-=======
 
     deleted_at= models.DateTimeField(
         'deleted at',
         auto_now_add = True,
         help_text='Date time on wich object was deleted.'
-
     )
 
     latitude = models.FloatField
@@ -47,7 +43,6 @@ class RecoveridModel(models.Model):
     population = models.IntegerField
     flag  =  models.CharField(max_length=500)
 
->>>>>>> features
     class Meta:
         """Meta option."""
         abstract = True

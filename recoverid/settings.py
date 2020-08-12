@@ -38,23 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'django_extensions',
     'rest_framework',
 
     # Local apps
-=======
->>>>>>> features
     'recoverid.cares.apps.CaresAppConfig',
     'recoverid.cities.apps.CitiesAppConfig',
     'recoverid.countries.apps.CountriesAppConfig',
     'recoverid.reports.apps.ReportsAppConfig',
     'recoverid.states.apps.StatesAppConfig',
-<<<<<<< HEAD
-=======
-
-
->>>>>>> features
 ]
 
 MIDDLEWARE = [
@@ -93,8 +85,12 @@ WSGI_APPLICATION = 'recoverid.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Recoverid',
+        'USER':'team',
+        'PASSWORD': 'hAzfULj2iXnwAtG',
+        'HOST': 'recoverid.cki4ybv2gdzf.us-east-1.rds.amazonaws.com',
+        'PORT': '3306'
     }
 }
 

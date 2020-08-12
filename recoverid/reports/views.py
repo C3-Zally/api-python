@@ -1,10 +1,16 @@
-<<<<<<< HEAD
 """ Reports views """
 
 # Django REST Framework
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
+from recoverid.reports.models import Report
+#import requests
+from recoverid.countries.models import Country
+from django.http import HttpResponse
+import requests
+import json
+import datetime
 
 # Django
 from django.db.models import Sum
@@ -34,14 +40,7 @@ def list_reports(self):
             'recovered': recovered,
         })
     return Response(data, status=200)
-=======
-from recoverid.reports.models import Report
-#import requests
-from recoverid.countries.models import Country
-from django.http import HttpResponse
-import requests
-import json
-import datetime
+
 
 
 def uploadDataHistory():
@@ -64,10 +63,7 @@ def uploadDataDialy():
     except:
         return '404'
 
-
-
     strUrl = f'https://storage.scrapinghub.com/items/{idUrl}?apikey=dd7c837f14c947c7a39ce7baae339bcd&format=json&saveas=data_11.json'
-    
     try:
         resp = requests.get(strUrl)
         jsonData = json.loads(resp.content)
@@ -75,7 +71,7 @@ def uploadDataDialy():
         dateReport = datajson['header']['date']
         date_time = datetime.datetime.strptime(dateReport,"%Y-%m-%dT%H:%M:%SZ")
         countReportDate = Report.objects.filter(date=date_time).count()
-    except expression as identifier:
+    except:
         return '404'
     
     try:
@@ -95,15 +91,10 @@ def uploadDataDialy():
         return '500'
 
     
-
-    
 def uploadData(requests):
     # countReport = Report.objects.count()
     # if countReport == 0:
     #     uploadDataHistory
-
     respInsert = uploadDataDialy()
-
     return HttpResponse(status=respInsert)
 
->>>>>>> features
