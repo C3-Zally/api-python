@@ -7,5 +7,5 @@ from django.urls import path
 from recoverid.countries.views import list_countries
 
 urlpatterns = [
-    path('api/country/', list_countries),
+    path('api/country', list_countries),
 ]

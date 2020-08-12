@@ -12,7 +12,7 @@ from recoverid.countries.models import Country
 @renderer_classes([JSONRenderer])
 def list_countries(self):
     """ List countries """
-    countries = Country.objects.all()[:9]
+    countries = Country.objects.all()[:196]
     data = []
     for country in countries:
         print(country.population)
