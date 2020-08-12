@@ -34,7 +34,6 @@ class RecoveridModel(models.Model):
         'deleted at',
         auto_now_add = True,
         help_text='Date time on wich object was deleted.'
-
     )
 
     latitude = models.FloatField
