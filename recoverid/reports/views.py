@@ -80,9 +80,7 @@ class ReportsView(generics.ListAPIView):
             'recovered': recovered,
         })
         return Response(data, status=200)
-    
-
-
+      
 
 def uploadDataHistory():
 
