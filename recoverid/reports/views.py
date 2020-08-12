@@ -4,7 +4,13 @@
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
-from recoverid.reports.models import Report
+from rest_framework import generics
+
+# Filters
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
+
+
 #import requests
 from recoverid.countries.models import Country
 from django.http import HttpResponse
@@ -13,34 +19,67 @@ import json
 import datetime
 
 # Django
-from django.db.models import Sum
+from django.db.models import Sum, Max
 
 # Models
 from recoverid.reports.models import Report
 
+class ReportsView(generics.ListAPIView):
 
-@api_view()
-@renderer_classes([JSONRenderer])
-def list_reports(self):
-    """ List reports """
-    reports = Report.objects.all()
-    data = []
-    confirm = Report.objects.all().aggregate(Sum('infections'))
-    confirmed = confirm['infections__sum']
-    dead = Report.objects.all().aggregate(Sum('deaths'))
-    deaths = dead['deaths__sum']
-    recover = Report.objects.all().aggregate(Sum('recovered'))
-    recovered = recover['recovered__sum']
-    for report in reports:
+    queryset = Report.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['date']
+
+    @api_view(['GET'])
+    @renderer_classes([JSONRenderer])
+    def list_reports(self):
+        """ List reports """
+        data = []
+        confirm = Report.objects.all().aggregate(Sum('infections'))
+        confirmed = confirm['infections__sum']
+        dead = Report.objects.all().aggregate(Sum('deaths'))
+        deaths = dead['deaths__sum']
+        recover = Report.objects.all().aggregate(Sum('recovered'))
+        recovered = recover['recovered__sum']
+        rep = Report.objects.last()
         data.append({
-            'Last_updated': report.date,
+            'Last_updated': rep.date,
             'confirmed': confirmed,
-            'active_cases': report.active_cases,
+            'active_cases': rep.active_cases,
             'deaths': deaths,
-            'Last_modified': report.updated_at,
             'recovered': recovered,
         })
-    return Response(data, status=200)
+        return Response(data, status=200)
+
+    @api_view(['GET'])
+    @renderer_classes([JSONRenderer])
+    def daily_report(self, year, month, day):
+        """ Daily report """
+        y = (
+            str(year),
+            str(month),
+            str(day)
+        )
+        date_s = "-".join(y)
+        date_object = datetime.datetime.strptime(date_s, '%Y-%m-%d').date()
+        data = []
+        filter_dataset = Report.objects.filter(date=date_object)
+        confirm = filter_dataset.aggregate(Sum('infections'))
+        confirmed = confirm['infections__sum']
+        dead = filter_dataset.aggregate(Sum('deaths'))
+        deaths = dead['deaths__sum']
+        recover = filter_dataset.aggregate(Sum('recovered'))
+        recovered = recover['recovered__sum']
+        active_c = filter_dataset.aggregate(Sum('active_cases'))
+        active_cases = active_c['active_cases__sum']
+        data.append({
+            'query_date': date_object,
+            'confirmed': confirmed,
+            'active_cases': active_cases,
+            'deaths': deaths,
+            'recovered': recovered,
+        })
+        return Response(data, status=200)
 
 
 def uploadDataHistory():
