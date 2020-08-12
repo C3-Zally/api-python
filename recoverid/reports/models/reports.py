@@ -1,7 +1,6 @@
 #Django
 from django.db import models
 
-from recoverid.utils.models import RecoveridModel
 from recoverid.countries.models import Country
 from recoverid.states.models import State
 from recoverid.cities.models import City
@@ -10,7 +9,7 @@ TYPE_STATUS = [
     ("ACTIVE","ACTIVE"),
     ("INACTIVE","INACTIVE")
 ]
-class Report(RecoveridModel):
+class Report(models.Model):
     report_id = models.AutoField(primary_key=True)
     infections = models.BigIntegerField(null=True)
     active_cases = models.BigIntegerField(null=True)

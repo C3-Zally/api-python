@@ -12,8 +12,6 @@ class Country(RecoveridModel):
     capital =  models.CharField(max_length=50)
     region =  models.CharField(max_length=50)
     subregion  =  models.CharField(max_length=50)
-    flag  =  models.CharField(max_length=500)
-    population = models.BigIntegerField()
 
     def __str__(self):
         """ Return country name """
