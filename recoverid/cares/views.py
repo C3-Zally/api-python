@@ -31,7 +31,7 @@ def list_apis(self):
         {
             "countries": "http://localhost:8000/api/country",
             "totals": "http://localhost:8000/api/reports",
-            # "totalsByDay": "http://localhost/api/report/daily?date=2020-08-04",
+            "totalsByDay": "http://localhost:8000/api/report/daily/2020/08/04",
             # "latestAllCountries": "http://localhost/api/report/countries",
             # "latestCountriesByCode": "http://localhost/api/report/countries?code=CO"
         }
