@@ -41,7 +41,6 @@ class RecoveridModel(models.Model):
         help_text='Date time on wich object was deleted.'
     )
 
-
     class Meta:
         """Meta option."""
         abstract = True

@@ -8,6 +8,7 @@ from rest_framework.renderers import JSONRenderer
 # Models
 from recoverid.countries.models import Country
 
+
 @api_view()
 @renderer_classes([JSONRenderer])
 def list_countries(self):
@@ -26,6 +27,6 @@ def list_countries(self):
             'region': country.region,
             'subregion': country.subregion,
             'flag': country.flag,
-            # 'population': country.population // problem here!, 
+            # 'population': country.population // problem here!,
         })
     return Response(data, status=200)

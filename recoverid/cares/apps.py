@@ -3,6 +3,7 @@
 # Django
 from django.apps import AppConfig
 
+
 class CaresAppConfig(AppConfig):
     """Cares app config."""
 
