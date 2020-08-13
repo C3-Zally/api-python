@@ -10,13 +10,8 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('countries', '0001_initial'),
-<<<<<<< HEAD
         ('cities', '0001_initial'),
         ('states', '0001_initial'),
-=======
-        ('states', '0001_initial'),
-        ('cities', '0001_initial'),
->>>>>>> 729847b36895447ff9d70ed6ee62efb1494c090a
     ]
 
     operations = [
