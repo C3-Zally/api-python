@@ -29,33 +29,32 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
-INSTALLED_APPS = [
-    # Django apps
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
+)
+
+THIRD_PARTY_APPS = (
+    # Third Parts - Django Rest Framework, Celery, django debug toolbar, etc
     'django_extensions',
     'rest_framework',
+)
 
-    # Local apps
-=======
->>>>>>> features
+LOCAL_APPS = (
+    # Own Apps
     'recoverid.cares.apps.CaresAppConfig',
     'recoverid.cities.apps.CitiesAppConfig',
     'recoverid.countries.apps.CountriesAppConfig',
     'recoverid.reports.apps.ReportsAppConfig',
     'recoverid.states.apps.StatesAppConfig',
-<<<<<<< HEAD
-=======
+)
 
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
->>>>>>> features
-]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,11 +92,14 @@ WSGI_APPLICATION = 'recoverid.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Recoverid',
+        'USER': 'team',
+        'PASSWORD': 'hAzfULj2iXnwAtG',
+        'HOST': 'recoverid.cki4ybv2gdzf.us-east-1.rds.amazonaws.com',
+        'PORT': '3306'
     }
 }
-
 
 
 # Password validation

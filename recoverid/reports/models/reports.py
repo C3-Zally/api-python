@@ -1,7 +1,6 @@
-#Django
+# Django
 from django.db import models
 
-from recoverid.utils.models import RecoveridModel
 from recoverid.countries.models import Country
 from recoverid.states.models import State
 from recoverid.cities.models import City
@@ -30,19 +29,14 @@ class Report(models.Model):
         'created at',
         auto_now_add=True,
         help_text='Date time on wich object was created.'
-
     )
-
-    updated_at= models.DateTimeField(
+    updated_at = models.DateTimeField(
         'updated at',
-        auto_now = True,
+        auto_now=True,
         help_text='Date time on wich object was last updated.'
-
     )
-
-    deleted_at= models.DateTimeField(
+    deleted_at = models.DateTimeField(
         'deleted at',
         auto_now_add=True,
         help_text='Date time on wich object was deleted.'
-
     )
