@@ -126,8 +126,7 @@ def uploadDataDialy():
 
     idUrl = ''
     try:
-        respId = requests.get('https://app.scrapinghub.com/api/jobs/list.json?project=466670&spider=spider_google&state=finished',
-                              auth=('dd7c837f14c947c7a39ce7baae339bcd', ''))
+        respId = requests.get('https://app.scrapinghub.com/api/jobs/list.json?apikey=dd7c837f14c947c7a39ce7baae339bcd&&project=466670&spider=spider_google&state=finished')
         jsonDataId = json.loads(respId.content)
         for dictData in jsonDataId['jobs']:
             if dictData['state'] == 'finished':
@@ -147,7 +146,6 @@ def uploadDataDialy():
         countReportDate = Report.objects.filter(date=date_time).count()
     except:
         return '404'
-
     try:
         if countReportDate == 0:
             for dataReport in datajson['content']:

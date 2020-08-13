@@ -106,12 +106,12 @@ WSGI_APPLICATION = 'recoverid.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Recoverid',
-        'USER': 'team',
-        'PASSWORD': 'hAzfULj2iXnwAtG',
-        'HOST': 'recoverid.cki4ybv2gdzf.us-east-1.rds.amazonaws.com',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'df3k17fe0qavnt',
+        'USER': 'kiydgsjczxpwsj',
+        'PASSWORD': '25dea1f02f99687a4b52d21c87a8ef7eac80a50c1a3ce4ff00527bcd8127a30e',
+        'HOST': 'ec2-52-202-185-87.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
