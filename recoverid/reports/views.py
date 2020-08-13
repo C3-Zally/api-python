@@ -92,7 +92,7 @@ class ReportsView(generics.ListAPIView):
             data.append({
                 "code": countries.alpha2code,
                 "country": countries.country_name,
-                "country_data": reports.values('updated_at','reated_at','infections','deaths','recovered'),
+                "country_data": reports.values('updated_at','created_at','infections','deaths','recovered'),
                 }
             )
         return Response(data, status=200)
@@ -109,7 +109,7 @@ class ReportsView(generics.ListAPIView):
             data.append({
                 "code": country_data.alpha2code,
                 "country": country_data.country_name,
-                "country_data": reports.values('updated_at','reated_at','infections','deaths','recovered'),
+                "country_data": reports.values('updated_at','created_at','infections','deaths','recovered'),
                 }
             )
         return Response(data, status=200)
@@ -127,6 +127,7 @@ def uploadDataDialy():
         respId = requests.get('https://app.scrapinghub.com/api/jobs/list.json?project=466670&spider=spider_google&state=finished',
                               auth=('dd7c837f14c947c7a39ce7baae339bcd', ''))
         jsonDataId = json.loads(respId.content)
+        
         for dictData in jsonDataId['jobs']:
             if dictData['state'] == 'finished':
                 idUrl = dictData['id']
@@ -142,12 +143,14 @@ def uploadDataDialy():
         dateReport = datajson['header']['date']
         date_time = datetime.datetime.strptime(
             dateReport, "%Y-%m-%dT%H:%M:%SZ")
+  
         countReportDate = Report.objects.filter(date=date_time).count()
+  
     except:
         return '404'
 
     try:
-        if countReportDate == 0:
+        if countReportDate == 0:        
             for dataReport in datajson['content']:
                 reportData = Report()
                 pais_id = Country.objects.get(
@@ -159,7 +162,8 @@ def uploadDataDialy():
                 reportData.new_cases = dataReport['newCases']
                 reportData.recovered = dataReport['recovered']
                 reportData.save()
-                return '200'
+
+            return '200'
     except:
         return '500'
 
