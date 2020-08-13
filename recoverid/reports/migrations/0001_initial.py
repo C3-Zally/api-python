@@ -13,41 +13,15 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-<<<<<<< HEAD
-        ('states', '0001_initial'),
-        ('cities', '0001_initial'),
-        ('countries', '0001_initial'),
-=======
         ('countries', '0001_initial'),
         ('cities', '0001_initial'),
         ('states', '0001_initial'),
->>>>>>> features
     ]
 
     operations = [
         migrations.CreateModel(
             name='Report',
             fields=[
-<<<<<<< HEAD
-                ('created_at', models.DateTimeField(auto_now_add=True, help_text='Date time on which object was created.', verbose_name='created at')),
-                ('updated_at', models.DateTimeField(auto_now=True, help_text='Date time on which object was last updated.', verbose_name='updated at')),
-                ('report_id', models.AutoField(primary_key=True, serialize=False)),
-                ('date', models.DateField(blank=True)),
-                ('infections', models.BigIntegerField()),
-                ('active_cases', models.BigIntegerField()),
-                ('new_cases', models.BigIntegerField()),
-                ('new_deaths', models.BigIntegerField()),
-                ('deaths', models.BigIntegerField()),
-                ('samples_proccesed', models.BigIntegerField()),
-                ('recovered', models.BigIntegerField()),
-                ('city_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cities.City')),
-                ('country_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='countries.Country')),
-                ('state_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='states.State')),
-            ],
-            options={
-                'abstract': False,
-            },
-=======
                 ('report_id', models.AutoField(primary_key=True, serialize=False)),
                 ('date', models.DateField()),
                 ('infections', models.IntegerField(null=True)),
@@ -58,13 +32,12 @@ class Migration(migrations.Migration):
                 ('samples_proccesed', models.IntegerField(null=True)),
                 ('recovered', models.IntegerField(null=True)),
                 ('status', models.CharField(choices=[('ACTIVE', 'ACTIVE'), ('INACTIVE', 'INACTIVE')], max_length=8)),
-                ('reated_at', models.DateTimeField(auto_now_add=True, help_text='Date time on wich object was created.', verbose_name='created at')),
+                ('created_at', models.DateTimeField(auto_now_add=True, help_text='Date time on wich object was created.', verbose_name='created at')),
                 ('updated_at', models.DateTimeField(auto_now=True, help_text='Date time on wich object was last updated.', verbose_name='updated at')),
                 ('deleted_at', models.DateTimeField(auto_now_add=True, help_text='Date time on wich object was deleted.', verbose_name='deleted at')),
                 ('city_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='cities.City')),
                 ('country_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='countries.Country')),
                 ('state_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='states.State')),
             ],
->>>>>>> features
         ),
     ]
