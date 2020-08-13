@@ -8,16 +8,14 @@ from rest_framework.renderers import JSONRenderer
 # Models
 from recoverid.countries.models import Country
 
+
 @api_view()
 @renderer_classes([JSONRenderer])
 def list_countries(self):
     """ List countries """
     countries = Country.objects.all()[:196]
-    data = []
-    for country in countries:
-        print(country.population)
-        print(country.country_id)
-        data.append({
+    data = [
+        {
             'id': country.country_id,
             'name': country.country_name,
             'alpha2Code': country.alpha2code,
@@ -26,6 +24,8 @@ def list_countries(self):
             'region': country.region,
             'subregion': country.subregion,
             'flag': country.flag,
-            # 'population': country.population // problem here!, 
-        })
+            'population': country.population if not country.population else 0
+        }
+        for country in countries
+    ]
     return Response(data, status=200)

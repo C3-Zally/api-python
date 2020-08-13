@@ -9,18 +9,17 @@ TYPE_STATUS = [
     ("INACTIVE", "INACTIVE")
 ]
 
-
 class RecoveridModel(models.Model):
     """Recoverid Base Model
 
     RecoveridModel is the abstact base class for every
     models that can be created in this project.
     """
+
     population = models.IntegerField
     flag = models.CharField(max_length=500)
     latitude = models.FloatField
     longitude = models.FloatField
-    #status = models.CharField(max_length=8,choices=[(tag, tag.value) for tag in StatusType])
     status = models.CharField(max_length=8, choices=TYPE_STATUS)
 
     created_at = models.DateTimeField(
@@ -38,9 +37,8 @@ class RecoveridModel(models.Model):
     deleted_at = models.DateTimeField(
         'deleted at',
         auto_now_add=True,
-        help_text='Date time on wich object was deleted.'
+        help_text='Date time on which object was deleted.'
     )
-
 
     class Meta:
         """Meta option."""
