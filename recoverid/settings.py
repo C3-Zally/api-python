@@ -29,27 +29,31 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
-INSTALLED_APPS = [
-    # Django apps
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+)
+
+THIRD_PARTY_APPS = (
+    # Third Parts - Django Rest Framework, Celery, django debug toolbar, etc
     'django_extensions',
     'rest_framework',
-    'django_filters',
-    
+)
 
-    # Local apps
+LOCAL_APPS = (
+    # Own Apps
     'recoverid.cares.apps.CaresAppConfig',
     'recoverid.cities.apps.CitiesAppConfig',
     'recoverid.countries.apps.CountriesAppConfig',
     'recoverid.reports.apps.ReportsAppConfig',
     'recoverid.states.apps.StatesAppConfig',
-]
+)
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 
 MIDDLEWARE = [
@@ -90,13 +94,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Recoverid',
-        'USER':'team',
+        'USER': 'team',
         'PASSWORD': 'hAzfULj2iXnwAtG',
         'HOST': 'recoverid.cki4ybv2gdzf.us-east-1.rds.amazonaws.com',
         'PORT': '3306'
     }
 }
-
 
 
 # Password validation
