@@ -4,6 +4,7 @@ from django.db import models
 # Utilites
 from recoverid.utils.models import RecoveridModel
 
+
 class Care(models.Model):
 
     """Care Model"""
@@ -11,7 +12,7 @@ class Care(models.Model):
     title = models.CharField(max_length=50)
     slug = models.CharField(max_length=50)
     description = models.CharField(max_length=4000)
-    
+
     def __str__(self):
         """ return id """
         return self.title

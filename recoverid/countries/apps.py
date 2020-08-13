@@ -2,6 +2,7 @@
 # Django
 from django.apps import AppConfig
 
+
 class CountriesAppConfig(AppConfig):
     """Countries app config."""
 
