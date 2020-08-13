@@ -79,8 +79,7 @@ class ReportsView(generics.ListAPIView):
             'recovered': recovered,
         })
         return Response(data, status=200)
-    
-    
+
     @api_view(['GET'])
     @renderer_classes([JSONRenderer])
     def reports_countries(self):
@@ -113,6 +112,7 @@ class ReportsView(generics.ListAPIView):
                 }
             )
         return Response(data, status=200)
+
 
 def uploadDataHistory():
 
