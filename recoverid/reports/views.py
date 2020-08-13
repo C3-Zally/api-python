@@ -12,7 +12,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 #import requests
-from recoverid.countries.models import Country
 from django.http import HttpResponse
 import requests
 import json
@@ -23,12 +22,12 @@ from django.db.models import Sum, Max
 
 # Models
 from recoverid.reports.models import Report
+from recoverid.countries.models import Country
 
 class ReportsView(generics.ListAPIView):
 
-    queryset = Report.objects.all()
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['date']
+    filterset_fields = ['date','code']
 
     @api_view(['GET'])
     @renderer_classes([JSONRenderer])
@@ -81,6 +80,39 @@ class ReportsView(generics.ListAPIView):
         })
         return Response(data, status=200)
 
+
+    @api_view(['GET'])
+    @renderer_classes([JSONRenderer])
+    def reports_countries(self):
+        """ List reports all countries """
+        all_countries = Country.objects.all()[:197]
+        data = []
+        for countries in all_countries:
+            reports = Report.objects.filter(country_id_id=countries.country_id).order_by('-updated_at')[:1]
+            data.append({
+                "code": countries.alpha2code,
+                "country": countries.country_name,
+                "country_data": reports.values('updated_at','reated_at','infections','deaths','recovered'),
+                }
+            )
+        return Response(data, status=200)
+    
+
+    @api_view(['GET'])
+    @renderer_classes([JSONRenderer])
+    def report_country(self, code):
+        """ List report with country code """
+        country = Country.objects.filter(alpha2code=code)
+        data = []
+        for country_data in country:
+            reports = Report.objects.filter(country_id_id=country_data.country_id).order_by('-updated_at')[:1]
+            data.append({
+                "code": country_data.alpha2code,
+                "country": country_data.country_name,
+                "country_data": reports.values('updated_at','reated_at','infections','deaths','recovered'),
+                }
+            )
+        return Response(data, status=200)
 
 def uploadDataHistory():
 
