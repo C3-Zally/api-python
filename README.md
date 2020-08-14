@@ -24,30 +24,17 @@ source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
-## Ejecutando las pruebas ⚙️
-
-<!-- _Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
+Ejecución en local
 ```
-Da un ejemplo
+python3 manage.py migrate
+python3 manage.py runserver
 ```
-
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-``` -->
 
 ## Despliegue 📦
 
-<!-- _Agrega notas adicionales sobre como hacer deploy_ -->
+CD automatico con Heroku: https://recoverid-api.herokuapp.com/
 
+La ejecucion de servicios se puede hacer importando los endpoints a insomnia, los cuales estan en la carpeta `endpoints`.
 
 ## Licencia 📄
 
