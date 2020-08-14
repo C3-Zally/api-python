@@ -62,7 +62,7 @@ class ReportsView(generics.ListAPIView):
             data.append({
                 "code": country_data.alpha2code,
                 "country": country_data.country_name,
-                "country_data": reports.values('date','infections','deaths','recovered'),
+                "country_data": reports.values('date','infections','deaths','recovered','active_cases'),
             }
             )
         return Response(data)
@@ -130,7 +130,7 @@ class ReportsView(generics.ListAPIView):
             data.append({
                 "code": countries.alpha2code,
                 "country": countries.country_name,
-                "country_data": reports.values('updated_at','created_at','infections','deaths','recovered'),
+                "country_data": reports.values('updated_at','infections','deaths','recovered', 'active_cases'),
                 }
             )
         return Response(data, status=200)
@@ -148,7 +148,7 @@ class ReportsView(generics.ListAPIView):
             data.append({
                 "code": country_data.alpha2code,
                 "country": country_data.country_name,
-                "country_data": reports.values('updated_at','created_at','infections','deaths','recovered'),
+                "country_data": reports.values('updated_at','infections','deaths','recovered', 'active_cases'),
                 }
             )
         return Response(data, status=200)
