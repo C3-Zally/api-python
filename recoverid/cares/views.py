@@ -33,7 +33,8 @@ def list_apis(self):
             "totals": "http://localhost:8000/api/reports",
             "totalsByDay": "http://localhost:8000/api/reports/daily/2020/08/04/",
             "latestAllCountries": "http://localhost:8000/api/reports/countries/",
-            "latestCountriesByCode": "http://localhost:8000/api/reports/country/CO/"
+            "latestCountriesByCode": "http://localhost:8000/api/reports/country/CO/",
+            "HistoricCountrByCode": "http://localhost:8000/api/reports/country/CO/from/2020/07/11/to/2020/08/11"
         }
     ]
     return Response(data, status=200)

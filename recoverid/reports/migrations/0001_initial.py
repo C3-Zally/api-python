@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('recovered', models.BigIntegerField(null=True)),
                 ('date', models.DateField()),
                 ('status', models.CharField(choices=[('ACTIVE', 'ACTIVE'), ('INACTIVE', 'INACTIVE')], max_length=8)),
-                ('reated_at', models.DateTimeField(auto_now_add=True, help_text='Date time on wich object was created.', verbose_name='reated at')),
+                ('created_at', models.DateTimeField(auto_now_add=True, help_text='Date time on wich object was created.', verbose_name='created at')),
                 ('updated_at', models.DateTimeField(auto_now=True, help_text='Date time on wich object was last updated.', verbose_name='updated at')),
                 ('deleted_at', models.DateTimeField(auto_now_add=True, help_text='Date time on wich object was deleted.', verbose_name='deleted at')),
                 ('city_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='cities.City')),

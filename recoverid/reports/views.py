@@ -8,7 +8,7 @@ from rest_framework import generics
 
 # Filters
 from rest_framework.filters import SearchFilter, OrderingFilter
-from django_filters.rest_framework import DjangoFilterBackend
+# from django_filters.rest_framework import DjangoFilterBackend
 
 
 #import requests
@@ -26,9 +26,45 @@ from recoverid.countries.models import Country
 
 class ReportsView(generics.ListAPIView):
 
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['date','code']
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['date','code']
 
+    @api_view(['GET'])
+    @renderer_classes([JSONRenderer])
+    def reports_from_to(self, code, y1, m1, d1, y2, m2, d2):
+        """ Historic reports """
+        data = []
+        from_ = (
+            str(y1),
+            str(m1),
+            str(d1)
+        )
+        to_ = (
+            str(y2),
+            str(m2),
+            str(d1)
+        )
+        date_f = "-".join(from_)
+        date_t = "-".join(to_)
+
+        from_date = datetime.datetime.strptime(date_f, '%Y-%m-%d').date()
+        to_date = datetime.datetime.strptime(date_t, '%Y-%m-%d').date()
+
+        filter_from_date = Report.objects.filter(date=from_date)
+        filter_to_date = Report.objects.filter(date=to_date)
+
+        country = Country.objects.filter(alpha2code=code)
+
+        for country_data in country:
+            reports = Report.objects.filter(country_id_id=country_data.country_id).filter(date__gte=from_date, date__lte=to_date)
+            data.append({
+                "code": country_data.alpha2code,
+                "country": country_data.country_name,
+                "country_data": reports.values('date','infections','deaths','recovered'),
+            }
+            )
+        return Response(data)
+    
     @api_view(['GET'])
     @renderer_classes([JSONRenderer])
     def list_reports(self):
@@ -91,12 +127,12 @@ class ReportsView(generics.ListAPIView):
             data.append({
                 "code": countries.alpha2code,
                 "country": countries.country_name,
-                "country_data": reports.values('updated_at','reated_at','infections','deaths','recovered'),
+                "country_data": reports.values('updated_at','created_at','infections','deaths','recovered'),
                 }
             )
         return Response(data, status=200)
-    
 
+    
     @api_view(['GET'])
     @renderer_classes([JSONRenderer])
     def report_country(self, code):
@@ -108,10 +144,11 @@ class ReportsView(generics.ListAPIView):
             data.append({
                 "code": country_data.alpha2code,
                 "country": country_data.country_name,
-                "country_data": reports.values('updated_at','reated_at','infections','deaths','recovered'),
+                "country_data": reports.values('updated_at','created_at','infections','deaths','recovered'),
                 }
             )
         return Response(data, status=200)
+    
 
 
 def uploadDataHistory():
