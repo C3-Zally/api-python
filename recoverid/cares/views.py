@@ -29,12 +29,12 @@ def list_apis(self):
     """ List of apis """
     data = [
         {
-            "countries": "http://localhost:8000/api/country",
-            "totals": "http://localhost:8000/api/reports",
-            "totalsByDay": "http://localhost:8000/api/reports/daily/2020/08/04/",
-            "latestAllCountries": "http://localhost:8000/api/reports/countries/",
-            "latestCountriesByCode": "http://localhost:8000/api/reports/country/CO/",
-            "HistoricCountrByCode": "http://localhost:8000/api/reports/country/CO/from/2020/07/11/to/2020/08/11"
+            "countries": "http://recoverid-api.herokuapp.com/api/country",
+            "totals": "http://recoverid-api.herokuapp.com/api/reports",
+            "totalsByDay": "http://recoverid-api.herokuapp.com/api/reports/daily/2020/08/04/",
+            "latestAllCountries": "http://recoverid-api.herokuapp.com/api/reports/countries/",
+            "latestCountriesByCode": "http://recoverid-api.herokuapp.com/api/reports/country/CO/",
+            "HistoricCountrByCode": "http://recoverid-api.herokuapp.com/api/reports/country/CO/from/2020/07/11/to/2020/08/11"
         }
     ]
     return Response(data, status=200)
