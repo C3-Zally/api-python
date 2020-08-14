@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.urls import include,path
+from django.urls import include, path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -22,8 +22,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('recoverid.cares.urls', 'cares'), namespace='care')),
+    path('', include(('recoverid.reports.urls', 'reports'), namespace='report')),
     path('', include(('recoverid.countries.urls', 'countries'), namespace='country')),
     # path('', include(('recoverid.cities.urls', 'cities'), namespace='city')),
     # path('', include(('recoverid.states.urls', 'states'), namespace='state')),
-    path('', include(('recoverid.reports.urls', 'reports'), namespace='report')),
 ]

@@ -24,7 +24,9 @@ from django.db.models import Sum, Max
 from recoverid.reports.models import Report
 from recoverid.countries.models import Country
 
+
 class ReportsView(generics.ListAPIView):
+
 
     # filter_backends = [DjangoFilterBackend]
     # filterset_fields = ['date','code']
@@ -123,7 +125,8 @@ class ReportsView(generics.ListAPIView):
         all_countries = Country.objects.all()[:197]
         data = []
         for countries in all_countries:
-            reports = Report.objects.filter(country_id_id=countries.country_id).order_by('-updated_at')[:1]
+            reports = Report.objects.filter(
+                country_id_id=countries.country_id).order_by('-updated_at')[:1]
             data.append({
                 "code": countries.alpha2code,
                 "country": countries.country_name,
@@ -140,7 +143,8 @@ class ReportsView(generics.ListAPIView):
         country = Country.objects.filter(alpha2code=code)
         data = []
         for country_data in country:
-            reports = Report.objects.filter(country_id_id=country_data.country_id).order_by('-updated_at')[:1]
+            reports = Report.objects.filter(
+                country_id_id=country_data.country_id).order_by('-updated_at')[:1]
             data.append({
                 "code": country_data.alpha2code,
                 "country": country_data.country_name,
@@ -157,13 +161,14 @@ def uploadDataHistory():
     data = json.loads(resp.content)
 
 
-
 def uploadDataDialy():
 
     idUrl = ''
     try:
-        respId = requests.get('https://app.scrapinghub.com/api/jobs/list.json?project=466670&spider=spider_google&state=finished',auth=('dd7c837f14c947c7a39ce7baae339bcd',''))
+        respId = requests.get('https://app.scrapinghub.com/api/jobs/list.json?project=466670&spider=spider_google&state=finished',
+                              auth=('dd7c837f14c947c7a39ce7baae339bcd', ''))
         jsonDataId = json.loads(respId.content)
+        
         for dictData in jsonDataId['jobs']:
             if dictData['state'] == 'finished':
                 idUrl = dictData['id']
@@ -177,16 +182,20 @@ def uploadDataDialy():
         jsonData = json.loads(resp.content)
         datajson = jsonData[0]
         dateReport = datajson['header']['date']
-        date_time = datetime.datetime.strptime(dateReport,"%Y-%m-%dT%H:%M:%SZ")
+        date_time = datetime.datetime.strptime(
+            dateReport, "%Y-%m-%dT%H:%M:%SZ")
+  
         countReportDate = Report.objects.filter(date=date_time).count()
+  
     except:
         return '404'
-    
+
     try:
-        if countReportDate == 0 :
+        if countReportDate == 0:        
             for dataReport in datajson['content']:
                 reportData = Report()
-                pais_id = Country.objects.get(alpha2code=dataReport['code']) #.values('country_id')
+                pais_id = Country.objects.get(
+                    alpha2code=dataReport['code'])  # .values('country_id')
                 reportData.country_id = pais_id
                 reportData.active_cases = dataReport['confirmed']
                 reportData.date = date_time.date()
@@ -194,15 +203,15 @@ def uploadDataDialy():
                 reportData.new_cases = dataReport['newCases']
                 reportData.recovered = dataReport['recovered']
                 reportData.save()
-                return '200'
-    except :
+
+            return '200'
+    except:
         return '500'
 
-    
+
 def uploadData(requests):
     # countReport = Report.objects.count()
     # if countReport == 0:
     #     uploadDataHistory
     respInsert = uploadDataDialy()
     return HttpResponse(status=respInsert)
-

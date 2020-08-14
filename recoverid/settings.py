@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,36 +24,41 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-6&1-l-x^x%s65n1gf9m8t)4=#o^m9yi6g*svgl%_-z&y$3z)!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['recoverid-api.herokuapp.com']
 
 
 # Application definition
-
-INSTALLED_APPS = [
-    # Django apps
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+)
+
+THIRD_PARTY_APPS = (
+    # Third Parts - Django Rest Framework, Celery, django debug toolbar, etc
     'django_extensions',
     'rest_framework',
-    'django_filters',
-    
+)
 
-    # Local apps
+LOCAL_APPS = (
+    # Own Apps
     'recoverid.cares.apps.CaresAppConfig',
     'recoverid.cities.apps.CitiesAppConfig',
     'recoverid.countries.apps.CountriesAppConfig',
     'recoverid.reports.apps.ReportsAppConfig',
     'recoverid.states.apps.StatesAppConfig',
-]
+)
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 
-MIDDLEWARE = [
+# Application definition
+DJANGO_MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,7 +66,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+)
+
+THIRD_PARTY_MIDDLEWARE = (
+    # Third Parts - Django
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+)
+
+LOCAL_MIDDLEWARE = (
+    # Own Apps
+
+)
+
+MIDDLEWARE = DJANGO_MIDDLEWARE + THIRD_PARTY_MIDDLEWARE + LOCAL_MIDDLEWARE
+
 
 ROOT_URLCONF = 'recoverid.urls'
 
@@ -90,13 +109,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Recoverid',
-        'USER':'team',
+        'USER': 'team',
         'PASSWORD': 'hAzfULj2iXnwAtG',
         'HOST': 'recoverid.cki4ybv2gdzf.us-east-1.rds.amazonaws.com',
         'PORT': '3306'
     }
 }
-
 
 
 # Password validation
@@ -135,4 +153,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATIC_URL = '/static/'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
